@@ -1,6 +1,7 @@
 import { Console } from "@woowacourse/mission-utils";
 import { INPUT_MESSAGE } from "./constant/input.js";
 import { validateCars, validateCount } from "./utils/validation.js";
+import { racing } from "./utils/racing.js";
 
 class App {
   async run() {
@@ -13,8 +14,7 @@ class App {
       const COUNT = parseInt(COUNT_INPUT);
       validateCount(COUNT_INPUT, COUNT);
 
-      Console.print(CARS);
-      Console.print(COUNT);
+      racing(CARS, COUNT);
     } catch (error) {
       Console.print(error.message);
       return;

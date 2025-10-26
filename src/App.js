@@ -1,12 +1,24 @@
-import { Console } from '@woowacourse/mission-utils';
+import { Console } from "@woowacourse/mission-utils";
+import { INPUT_MESSAGE } from "./constant/input.js";
+import { validateCars, validateCount } from "./utils/validation.js";
 
 class App {
   async run() {
-    const CARS_INPUT = await Console.readLineAsync("경주할 자동차 이름을 입력하세요.(이름은 쉼표(,) 기준으로 구분)\n");
-    const CARS = CARS_INPUT.split(',').map(car => car.trim());
-    const COUNT_INPUT = await Console.readLineAsync("시도할 횟수는 몇 회인가요?\n");
+    try {
+      const CARS_INPUT = await Console.readLineAsync(INPUT_MESSAGE.CARS);
+      const CARS = CARS_INPUT.split(",").map((car) => car.trim());
+      validateCars(CARS);
 
-    Console.print(CARS, COUNT_INPUT);
+      const COUNT_INPUT = await Console.readLineAsync(INPUT_MESSAGE.COUNT);
+      const COUNT = parseInt(COUNT_INPUT);
+      validateCount(COUNT_INPUT, COUNT);
+
+      Console.print(CARS);
+      Console.print(COUNT);
+    } catch (error) {
+      Console.print(error.message);
+      return;
+    }
   }
 }
 

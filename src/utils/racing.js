@@ -8,6 +8,9 @@ export function racing(cars, count) {
     playRound(score, cars);
     Console.print("");
   }
+
+  const winner = getWinner(score, cars);
+  Console.print(winner);
 }
 
 function playRound(score, cars) {
@@ -28,4 +31,11 @@ function updateScore(score, index) {
 function moveCheck() {
   const randomValue = Random.pickNumberInRange(0, 9);
   return randomValue >= 4;
+}
+
+function getWinner(score, cars) {
+  const maxScore = Math.max(...score);
+  const winner = cars.filter((_, index) => score[index] === maxScore);
+
+  return winner;
 }

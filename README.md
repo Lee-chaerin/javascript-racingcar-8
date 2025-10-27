@@ -32,3 +32,28 @@
 - [x] 횟수 입력 시, 숫자가 아닌 값을 입력한 경우
 - [x] 공동 우승자인 경우
 - [x] 올바른 입력값을 넣은 경우
+
+
+## 파일 구조
+```sh
+javascript-racingcar-8/
+├── tests/
+│   └── ApplicationTest.js : 테스트 코드 관리
+├── node_modules/
+│   └── ...
+├── src/
+│   ├── constant/
+│   │   ├── error.js       : 에러 메세지 상수
+│   │   ├── input.js       : 입력 메세지 상수
+│   │   └── testCase.js    : 예외 테스트용 입력 케이스 상수
+│   ├── utils/ 
+│   │   ├── racing.js      : 경주 로직 함수
+│   │   └── validation.js  : 입력값 검증 함수
+|   ├── App.js
+│   └── index.js    
+├── .gitignore
+├── .npmrc 
+├── package.json
+├── package.json
+└── README.md 
+```

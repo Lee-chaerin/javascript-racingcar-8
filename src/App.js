@@ -14,6 +14,7 @@ class App {
       const count = parseInt(countInput);
       validateCount(countInput, count);
 
+      Console.print("");
       racing(cars, count);
     } catch (error) {
       Console.print(error.message);

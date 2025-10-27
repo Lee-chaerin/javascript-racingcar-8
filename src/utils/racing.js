@@ -10,7 +10,7 @@ export function racing(cars, count) {
   }
 
   const winner = getWinner(score, cars);
-  Console.print(winner);
+  Console.print(`최종 우승자 : ${winner.join(", ")}`);
 }
 
 function playRound(score, cars) {

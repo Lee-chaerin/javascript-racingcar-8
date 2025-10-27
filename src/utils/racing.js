@@ -1,11 +1,11 @@
 import { Console, Random } from "@woowacourse/mission-utils";
 
 export function racing(cars, count) {
-  const SCORE = new Array(cars.length).fill(0);
+  const score = new Array(cars.length).fill(0);
 
   for (let round = 0; round < count; round++) {
-    playRound(SCORE, cars);
-    Console.print(SCORE);
+    playRound(score, cars);
+    Console.print(score);
   }
 }
 
@@ -22,6 +22,6 @@ function updateScore(score, index) {
 }
 
 function moveCheck() {
-  const RANDOM_VALUE = Random.pickNumberInRange(0, 9);
-  return RANDOM_VALUE >= 4;
+  const randomValue = Random.pickNumberInRange(0, 9);
+  return randomValue >= 4;
 }

@@ -5,21 +5,16 @@ import { racing } from "./utils/racing.js";
 
 class App {
   async run() {
-    try {
-      const carsInput = await Console.readLineAsync(INPUT_MESSAGE.CARS);
-      const cars = carsInput.split(",").map((car) => car.trim());
-      validateCars(cars);
+    const carsInput = await Console.readLineAsync(INPUT_MESSAGE.CARS);
+    const cars = carsInput.split(",").map((car) => car.trim());
+    validateCars(cars);
 
-      const countInput = await Console.readLineAsync(INPUT_MESSAGE.COUNT);
-      const count = parseInt(countInput);
-      validateCount(countInput, count);
+    const countInput = await Console.readLineAsync(INPUT_MESSAGE.COUNT);
+    const count = parseInt(countInput);
+    validateCount(countInput, count);
 
-      Console.print("");
-      racing(cars, count);
-    } catch (error) {
-      Console.print(error.message);
-      return;
-    }
+    Console.print("");
+    racing(cars, count);
   }
 }
 

@@ -1,5 +1,6 @@
 import App from "../src/App.js";
 import { MissionUtils } from "@woowacourse/mission-utils";
+import { EXCEPTION_CASE } from "../src/constant/testCase.js";
 
 const mockQuestions = (inputs) => {
   MissionUtils.Console.readLineAsync = jest.fn();
@@ -56,5 +57,51 @@ describe("자동차 경주", () => {
 
     // then
     await expect(app.run()).rejects.toThrow("[ERROR]");
+  });
+
+  EXCEPTION_CASE.forEach(({ input, reason }) => {
+    test(`예외 테스트: ${reason}`, async () => {
+      mockQuestions([...input]);
+      const app = new App();
+      await expect(app.run()).rejects.toThrow("[ERROR]");
+    });
+  });
+
+  test("공동 우승자 테스트", async () => {
+    const inputs = ["pobi,woni", "1"];
+    const logSpy = getLogSpy();
+
+    mockQuestions(inputs);
+    mockRandoms([4, 4]);
+
+    const app = new App();
+    await app.run();
+
+    expect(logSpy).toHaveBeenCalledWith(
+      expect.stringContaining("최종 우승자 : pobi, woni")
+    );
+  });
+
+  test("정상 실행 테스트", async () => {
+    const MOVING_FORWARD = 4;
+    const STOP = 3;
+    const inputs = ["pobi,woni,jun", "5"];
+    const logSpy = getLogSpy();
+
+    mockQuestions(inputs);
+    mockRandoms([
+      MOVING_FORWARD, STOP, MOVING_FORWARD,
+      MOVING_FORWARD, MOVING_FORWARD, MOVING_FORWARD,
+      MOVING_FORWARD, MOVING_FORWARD, MOVING_FORWARD,
+      MOVING_FORWARD, MOVING_FORWARD, MOVING_FORWARD,
+      MOVING_FORWARD, MOVING_FORWARD, MOVING_FORWARD,
+    ]);
+
+    const app = new App();
+    await app.run();
+
+    expect(logSpy).toHaveBeenCalledWith(
+      expect.stringContaining("최종 우승자 : pobi, jun")
+    );
   });
 });
